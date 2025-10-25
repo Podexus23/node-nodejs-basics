@@ -6,6 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const copy = async () => {
+  const filesDir = resolve(__dirname, "files");
+  const filesCopyDir = resolve(__dirname, "files_copy");
+
   try {
     const src = await stat(filesDir)
       .then(() => true)
