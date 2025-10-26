@@ -1,5 +1,28 @@
+import { fileURLToPath } from "url";
+import { cp, stat } from "fs/promises";
+import { dirname, resolve } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const copy = async () => {
-  // Write your code here
+  const filesDir = resolve(__dirname, "files");
+  const filesCopyDir = resolve(__dirname, "files_copy");
+
+  try {
+    const src = await stat(filesDir)
+      .then(() => true)
+      .catch(() => false);
+    const dest = await stat(filesCopyDir)
+      .then(() => true)
+      .catch(() => false);
+
+    if (!src || dest) throw new Error("FS operation failed");
+    await cp(filesDir, filesCopyDir, { recursive: true });
+    console.log("File copied");
+  } catch (err) {
+    throw err;
+  }
 };
 
 await copy();
