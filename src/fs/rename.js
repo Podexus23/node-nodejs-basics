@@ -23,6 +23,7 @@ const rename = async () => {
     }
 
     await fs.rename(oldName, newName);
+    console.log("File renamed");
   } catch (error) {
     throw error;
   }

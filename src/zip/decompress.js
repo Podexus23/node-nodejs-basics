@@ -2,7 +2,7 @@ import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
 import { createReadStream, createWriteStream } from "fs";
 import { pipeline } from "stream/promises";
-import { createGunzip, createGzip } from "zlib";
+import { createGunzip } from "zlib";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

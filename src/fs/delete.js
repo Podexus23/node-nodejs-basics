@@ -9,6 +9,7 @@ const remove = async () => {
 
   try {
     await fs.rm(fileToRemove);
+    console.log("file deleted");
   } catch (err) {
     if (err.code === "ENOENT") throw new Error("FS operation failed");
     throw err;

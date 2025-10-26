@@ -19,6 +19,7 @@ const copy = async () => {
 
     if (!src || dest) throw new Error("FS operation failed");
     await cp(filesDir, filesCopyDir, { recursive: true });
+    console.log("File copied");
   } catch (err) {
     throw err;
   }
