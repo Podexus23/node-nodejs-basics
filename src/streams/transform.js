@@ -16,7 +16,11 @@ class Reverse extends Transform {
 const transform = async () => {
   if (process.stdin.setEncoding) process.stdin.setEncoding("utf8");
 
-  await pipeline(process.stdin, new Reverse(), process.stdout);
+  try {
+    await pipeline(process.stdin, new Reverse(), process.stdout);
+  } catch (err) {
+    console.error("Streams: pipeline failed", err);
+  }
 };
 
 await transform();

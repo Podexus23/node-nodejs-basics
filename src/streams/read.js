@@ -13,6 +13,10 @@ const read = async () => {
   rs.on("end", () => {
     process.stdout.write("\n");
   });
+
+  rs.on("error", (err) => {
+    console.error(`Streams: ${err.message}`);
+  });
 };
 
 await read();

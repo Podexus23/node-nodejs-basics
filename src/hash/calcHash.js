@@ -11,10 +11,16 @@ const calculateHash = async () => {
   const hash = createHash("sha256");
   const input = createReadStream(filePath);
 
-  await pipeline(input, hash);
-  const digest = hash.digest("hex");
-  // process.stdout.write(`${digest}\n`);
-  console.log(digest);
+  try {
+    await pipeline(input, hash);
+    const digest = hash.digest("hex");
+    // process.stdout.write(`${digest}\n`);
+    console.log(digest);
+  } catch (err) {
+    if (err.code === "ENOENT")
+      throw new Error("Hash operation failed. File not found");
+    console.error(err);
+  }
 };
 
 await calculateHash();
